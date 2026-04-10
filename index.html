@@ -1,137 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue.js 學習路徑 - 目錄索引</title>
-    <style>
-        :root {
-            --primary-color: #42b883;
-            --sidebar-bg: #1e293b;
-            --sidebar-hover: #334155;
-            --active-bg: #42b883;
-            --content-bg: #f1f5f9;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            background-color: var(--content-bg);
-        }
-
-        /* 側邊導覽列 */
-        .sidebar {
-            width: 280px;
-            background-color: var(--sidebar-bg);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-        .sidebar-header {
-            padding: 30px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .sidebar-header h1 {
-            color: var(--primary-color);
-            font-size: 1.25rem;
-            margin: 0;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .student-id {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 8px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .nav-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex: 1;
-            overflow-y: auto;
-        }
-        .nav-item {
-            margin: 4px 15px;
-        }
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            color: var(--text-main);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-        .nav-link:hover {
-            background-color: var(--sidebar-hover);
-        }
-        .nav-link.active {
-            background-color: var(--active-bg);
-            color: white;
-            box-shadow: 0 4px 12px rgba(66, 184, 131, 0.3);
-        }
-        .ex-number {
-            font-weight: 700;
-            margin-right: 12px;
-            opacity: 0.7;
-            font-size: 0.8rem;
-            width: 20px;
-        }
-
-        /* 右側展示區 */
-        .main-display {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: white;
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h1>Vue.js 學習路徑</h1>
-            <div class="student-id">Student ID: 413730226</div>
-        </div>
-        <ul class="nav-list">
-            <li class="nav-item"><a href="ex1/index.html" target="viewFrame" class="nav-link active"><span class="ex-number">01</span> Vue 基礎與計數器</a></li>
-            <li class="nav-item"><a href="ex2/index.html" target="viewFrame" class="nav-link"><span class="ex-number">02</span> 資料綁定與顯示</a></li>
-            <li class="nav-item"><a href="ex3/index.html" target="viewFrame" class="nav-link"><span class="ex-number">03</span> 事件處理與方法</a></li>
-            <li class="nav-item"><a href="ex4/index.html" target="viewFrame" class="nav-link"><span class="ex-number">04</span> 雙向資料綁定</a></li>
-            <li class="nav-item"><a href="ex5/index.html" target="viewFrame" class="nav-link"><span class="ex-number">05</span> 條件渲染應用</a></li>
-            <li class="nav-item"><a href="ex6/index.html" target="viewFrame" class="nav-link"><span class="ex-number">06</span> 列表渲染實作</a></li>
-            <li class="nav-item"><a href="ex7/index.html" target="viewFrame" class="nav-link"><span class="ex-number">07</span> 計算屬性應用</a></li>
-            <li class="nav-item"><a href="ex8/index.html" target="viewFrame" class="nav-link"><span class="ex-number">08</span> 動態樣式與 Class</a></li>
-            <li class="nav-item"><a href="ex9/index.html" target="viewFrame" class="nav-link"><span class="ex-number">09</span> 綜合：待辦清單</a></li>
-        </ul>
-    </aside>
-
-    <main class="main-display">
-        <iframe name="viewFrame" src="ex1/index.html"></iframe>
-    </main>
-
-    <script>
-        // 處理選單點擊後的高亮效果
-        const links = document.querySelectorAll('.nav-link');
-        links.forEach(link => {
-            link.addEventListener('click', function() {
-                links.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
+    <div id="app">
+        <input v-model="color" placeholder="輸入顏色，如 red、blue" />
+        
+        <!-- 動態改變樣式 -->
+        <p :style="{ color: color }">這段文字的顏色會改變</p>
+        
+        <!-- 動態切換 CSS class -->
+        <p :class="{ big: isBig }">文字大小</p>
+        <button @click="isBig = !isBig">切換大小</button>
+      </div>
+        <!-- 引入 Vue -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+      <style>
+        .big { font-size: 32px; font-weight: bold; }
+      </style>
+      
+      <script>
+      Vue.createApp({
+        data() {
+          return {
+            color: "black",
+            isBig: false
+          }
+        }
+      }).mount("#app")
+      </script>
+      
 </body>
 </html>
